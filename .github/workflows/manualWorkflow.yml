@@ -1,6 +1,14 @@
 name: Manual-Workflow
 
-on: [workflow_dispatch]
+on:
+  push:
+    branches: ["main","develop"]
+  workflow_dispatch:
+    input:
+      clusterName:
+        description: 'Cluster Name'
+        required: true
+        default: something
     
 jobs:
   build-and-deploy-project:
@@ -8,3 +16,6 @@ jobs:
     steps:
       - name: Run hello world
         run: echo "Hello World!"
+      
+      - name: Print clusterName
+        run: echo {{ inputs.clusterName }}

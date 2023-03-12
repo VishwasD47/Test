@@ -13,8 +13,6 @@ jobs:
   build-and-deploy-project:
     runs-on: ubuntu-latest
     steps:
-      - name: Run hello world
-        run: echo "Hello World!"
       
       - name: Print clusterName
         run: echo ${{ inputs.clusterName }}

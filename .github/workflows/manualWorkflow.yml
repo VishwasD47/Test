@@ -1,14 +1,14 @@
 name: Manual-Workflow
 
 on:
-  push:
-    branches: ["main","develop"]
   workflow_dispatch:
-    input:
+    inputs:
       clusterName:
         description: 'Cluster Name'
         required: true
         default: something
+  push:
+    branches: ["main", "develop"]
     
 jobs:
   build-and-deploy-project:

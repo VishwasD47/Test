@@ -1,0 +1,10 @@
+name: Manual-Workflow
+
+on: [workflow_dispatch]
+    
+jobs:
+  build-and-deploy-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run hello world
+        run: echo "Hello World!"

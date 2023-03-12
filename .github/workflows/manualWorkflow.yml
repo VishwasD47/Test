@@ -7,6 +7,8 @@ on:
         description: 'Cluster Name'
         required: true
         default: something
+  workflow_run:
+    branches: ["main"]
     
 jobs:
   build-and-deploy-project:

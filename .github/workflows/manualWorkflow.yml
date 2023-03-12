@@ -9,7 +9,7 @@ on:
         default: something
     
 jobs:
-  if: github.event.push.ref == 'refs/heads/main'
+  if: github.ref == 'refs/heads/main'
   build-and-deploy-project:
     runs-on: ubuntu-latest
     steps:

@@ -7,8 +7,6 @@ on:
         description: 'Cluster Name'
         required: true
         default: something
-  push:
-    branches: ["main", "develop"]
     
 jobs:
   build-and-deploy-project:
@@ -18,4 +16,4 @@ jobs:
         run: echo "Hello World!"
       
       - name: Print clusterName
-        run: echo {{ inputs.clusterName }}
+        run: echo ${{ inputs.clusterName }}

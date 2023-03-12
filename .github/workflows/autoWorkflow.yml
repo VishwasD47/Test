@@ -9,4 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Bye world
-        run: echo "Bye World!"
+        run: | 
+          echo ${{ github.event.push.ref }}
+          echo ${{ github.event.push.ref_type }}

@@ -1,6 +1,9 @@
 name: Manual-Workflow
 
 on:
+  push:
+    tags:
+      - '*'
   workflow_dispatch:
     branches: ["main"]
     inputs:
@@ -15,6 +18,3 @@ jobs:
     steps:
       - name: Run hello world
         run: echo "Hello World!"
-      
-      - name: Print clusterName
-        run: echo ${{ inputs.clusterName }}

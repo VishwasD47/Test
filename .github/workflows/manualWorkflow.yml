@@ -1,9 +1,9 @@
 name: Manual-Workflow
-permissions:
-  contents: write
-  id-token: write
+
 on:
   push:
+    branches:
+      - main
     tags:
       - '*'
   workflow_dispatch:
@@ -13,6 +13,10 @@ on:
         description: 'Cluster Name'
         required: true
         default: something
+
+permissions:
+  contents: write
+  id-token: write
     
 jobs:
   tag-pipeline:

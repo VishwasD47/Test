@@ -2,7 +2,6 @@ name: Manual-Workflow
 
 on:
   workflow_dispatch:
-    branches: ["main"]
     inputs:
       clusterName:
         description: 'Cluster Name'
@@ -11,10 +10,11 @@ on:
     
 jobs:
   build-and-deploy-project:
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
-      - name: Run hello world
-        run: echo "Hello World!"
       
       - name: Print clusterName
-        run: echo ${{ inputs.clusterName }}
+        run: |
+          echo ${{ github.event.push.ref }}
+          echo ${{ github.ref }}

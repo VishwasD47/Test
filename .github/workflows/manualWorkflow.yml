@@ -1,11 +1,6 @@
 name: Manual-Workflow
 
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - '*'
   workflow_dispatch:
     branches: ["main"]
     inputs:

@@ -10,7 +10,7 @@ on:
     branches: ["main"]
     inputs:
       clusterName:
-        description: 'Cluster Name'
+        description: 'Write Cluster Name'
         required: true
         default: something
 

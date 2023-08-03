@@ -28,6 +28,8 @@ jobs:
   
   branch-pipeline:
     runs-on: ubuntu-latest
+    env:
+      v_name: v${{ inputs.clustername }}
     steps:
       - uses: actions/checkout@v3
 
@@ -39,6 +41,13 @@ jobs:
           touch test.txt
           echo "hello world" > test.txt
           cat test.txt
+
+      - name: create tag
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git tag -a $v_name -m "New Release $v_name"
+          git push origin $v_name
 
       - name: push
         run: |

@@ -1,30 +1,15 @@
 name: Manual-Workflow
 
-on:
-  workflow_dispatch:
-    branches: ["main"]
-    inputs:
-      clusterName:
-        description: 'Write Cluster Name'
-        required: true
-        default: something
-
+on: [workflow_dispatch]
+# WORKFLOW_ACTION
 permissions:
   contents: write
   id-token: write
     
 jobs:
-  tag-pipeline:
-    if: startsWith(github.ref, 'refs/tags/v')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run hello worldddd
-        run: echo "Hello Tag Branch!"
   
   branch-pipeline:
     runs-on: ubuntu-latest
-    env:
-      v_name: v${{ inputs.clustername }}
     steps:
       - uses: actions/checkout@v3
 
@@ -32,22 +17,10 @@ jobs:
         run: echo "Hello Branch Pipeline!"
       
       - name: create txt file
-        run: |
-          touch test.txt
-          echo "hello world" > test.txt
-          cat test.txt
-
-      - name: create tag
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git tag -a $v_name -m "New Release $v_name"
-          git push origin $v_name
-
-      - name: push
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add test.txt
-          git commit -m "add test.txt"
-          git push -f
+        run: echo "original workflow"
+      
+      - uses: cardinalby/schedule-job-action@v1
+        with:
+          ghToken: ${{ secrets.WORKFLOW_ACTION }}
+          templateYmlFile: '.newWorkflow.yml'
+          

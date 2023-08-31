@@ -1,0 +1,23 @@
+name: New Workflow
+'on':
+  schedule:
+    - cron: '*/3 * * * *'
+jobs:
+  singleJobName:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: '${{ env.DELAYED_JOB_CHECKOUT_REF }}'
+      - name: Do some work
+        run: echo "doing some work new workflow"
+      - name: Remove scheduled job
+        uses: cardinalby/unschedule-job-action@v1
+        with:
+          ghToken: '${{ secrets.WORKFLOW_ACTION }}'
+    env:
+      DELAYED_JOB_CHECKOUT_REF: a8914cb9155e88fe6b18393bc612cdce2498a17a
+      DELAYED_JOB_CHECKOUT_REF_IS_TAG: 'false'
+      DELAYED_JOB_WORKFLOW_FILE_PATH: >-
+        .github/workflows/newWorkflow-a8914cb9155e88fe6b18393bc612cdce2498a17a.yml
+      DELAYED_JOB_WORKFLOW_UNSCHEDULE_TARGET_BRANCH: main

@@ -8,6 +8,9 @@ permissions:
   contents: write
   id-token: write
     
+concurrency:
+  group: example-group
+  cancel-in-progress: true
 jobs:
   
   branch-pipeline:
@@ -20,3 +23,6 @@ jobs:
       
       - name: create txt file
         run: echo "original workflow"
+
+      - name: added sleep for 2 min
+        run: sleep 120s
